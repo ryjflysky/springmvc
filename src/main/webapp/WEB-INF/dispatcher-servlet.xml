@@ -12,6 +12,12 @@
     <!-- scan the package and the sub package -->
     <context:component-scan base-package="org.springmvc.controller"/>
     <!-- configure the InternalResourceViewResolver -->
+    <mvc:interceptors>
+    	<mvc:interceptor>
+    		<mvc:mapping path="/getRole*.do" />
+    		<bean class="org.springmvc.interceptor.RoleInterceptor" />
+    	</mvc:interceptor>
+    </mvc:interceptors>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
         <!-- 前缀 -->
         <property name="prefix" value="/WEB-INF/jsp/" />

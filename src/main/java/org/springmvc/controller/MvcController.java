@@ -3,6 +3,7 @@ package org.springmvc.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,6 +72,21 @@ public class MvcController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("role", role);
 		mv.setViewName("showRole");
+		return mv;
+	}
+	
+	@RequestMapping(value="/getRole")
+	public ModelAndView hello5(@RequestAttribute("id") Long id, @RequestAttribute("roleName") String roleName) {
+		ModelAndView mv = new ModelAndView();
+		Role role = rsi.getRole(id);
+		System.out.println("RoleName:" + roleName);
+		if (null == role) {
+			mv.addObject("message", "查询信息为空");
+		} else {
+			mv.addObject("message", "查询信息成功");
+		}
+		mv.addObject("role", role);
+		mv.setViewName("roleMessage");
 		return mv;
 	}
 }

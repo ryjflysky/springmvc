@@ -19,6 +19,11 @@
 </script>
 </head>
 <body>
+	<%
+		request.setAttribute("id", 2L);
+		request.setAttribute("roleName", "XiaoMi");
+		request.getRequestDispatcher("./getRole.do").forward(request, response);
+	%>
 	<form action="addRole.do">
 		<button name="submit" type="submit">Add Role</button>
 	</form>
